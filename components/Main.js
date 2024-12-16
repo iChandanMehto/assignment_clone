@@ -12,9 +12,7 @@ import { GrRotateRight } from "react-icons/gr";
 import { Slider } from "@/components/ui/slider"
 import { Checkbox } from "@/components/ui/checkbox"
 import { FiRefreshCw } from "react-icons/fi";
-import mySearchBar from "./ui/searchBar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ParentSearchbar from './ui/ParentSearchbar';
 import { FaPlay } from "react-icons/fa";
 import Pausebtn from "./ui/Pausebtn";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -22,25 +20,6 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import Model from './Modal'
 
 // import SearchBar from "./SearchBar";
-
-
-
-
-
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-
-
-
-
-
 
 
 const Main = () => {

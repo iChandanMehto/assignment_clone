@@ -94,7 +94,7 @@ const Navbar = () => {
           </Link>
           </li>
          <li>
-         <Button  className="border-[#5095f8] mx-1 px-4 text-xl rounded-3xl text-white  py-1.5 pr-12 pl-12 pt-6 pb-6 border-2 border-solid hover:bg-slate-200" variant="outline">Log In</Button> </li>
+         <Button  className="border-[#5095f8] mx-1 px-4 text-xl rounded-3xl text-black py-1.5 pr-12 pl-12 pt-6 pb-6 border-2 border-solid hover:bg-slate-200" variant="outline">Log In</Button> </li>
          <li><Button  className="border-[#5095f8] bg-[#5679f3] mx-1 px-4 text-xl rounded-3xl   py-1.5 pr-12 pl-12 pt-6 pb-6 border-2 hover:bg-[#5c78dc] hover:text-white " variant="outline">Register</Button>  </li>
         </ul>
    

@@ -21,7 +21,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 
 import Model from './Modal'
 
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 
 
 
@@ -191,7 +191,7 @@ const Main = () => {
                       ></path>
                     </svg>
                     Pro 1 Language 
-                    { showListBar && <SearchBar onClose={() => setShowListBar(true)}/>}
+                    {/* { showListBar && <SearchBar onClose={() => setShowListBar(true)}/>} */}
                   </div>
           
             <span className="border hover:bg-[#f7f7f7] bg-white border-[#e9e9e9] rounded-full text-black from-neutral-950 md:text-[20px]   text-[14px] px-3 md:px-4 py-3 " ><Pausebtn /></span>

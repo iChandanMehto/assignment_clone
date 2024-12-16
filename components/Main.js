@@ -9,7 +9,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { IoLayers } from "react-icons/io5";
 import { GrRotateLeft } from "react-icons/gr";
 import { GrRotateRight } from "react-icons/gr";
-import { ComboboxDemo } from "./ui/ComboboxDemo";
 import { Slider } from "@/components/ui/slider"
 import { Checkbox } from "@/components/ui/checkbox"
 import { FiRefreshCw } from "react-icons/fi";

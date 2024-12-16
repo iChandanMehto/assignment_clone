@@ -40,7 +40,7 @@ function Modal({ onClose }) {
       onClick={closeModal}
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-contrast-75"
     >
-      <div className="bg-white rounded-2xl flex-col items-center w-full md:w-[26vw] shadow-custom">
+      <div className="bg-white rounded-2xl flex-col items-center w-full md:w-[29vw] shadow-custom">
         <div className="bg-[#f5f5f5] rounded-lg flex justify-between items-center px-5 p-4">
           <h5>Audio Setting</h5>
           <button onClick={onClose} className="float-right">

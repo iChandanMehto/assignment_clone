@@ -263,7 +263,7 @@ const Main = () => {
             </ul>
           </div>
           <div className="col-span-3 md:col-span-1   justify-center bg-white   rounded-2xl shadow-sm ">
-            <h3 className="  tracking-normal text-sm mb-2 md:text-[22px] text-[#4c555a] py-4 font-medium">Audio Settings</h3>
+            <h3 className="  tracking-normal text-lg mb-2 md:text-[22px] text-[#4c555a] py-4 font-medium">Audio Settings</h3>
             <div className=" w-full px-5 py-4  flex flex-row  mt-4 border-slate-300  border-2 h-20  bg-white  shadow-lg  my-2   rounded-3xl  md:rounded-3xl text-lg items-center md: overflow-x-auto whitespace-nowrap" >
               <div className="grid grid-cols-2 gap-5 align-middle   md:gap-10">
                 <div className="bg-white  px-5   flex items-start justify-start gap-1 mr-1">

@@ -21,6 +21,13 @@ import Model from './Modal'
 
 // import SearchBar from "./SearchBar";
 
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+
+import { ComboboxDemo } from "./ui/comboboxDemo";
 
 const Main = () => {
   const [text, setText] = React.useState("");
@@ -144,8 +151,11 @@ const Main = () => {
 
             <div className="border-l  leading-7 border-slate-300 h-16 mt-[10px] mx-1 bg-gray-100"></div>
 
-          
-                  <div  
+            <HoverCard >
+  <HoverCardTrigger>
+ 
+                  <div 
+                  onClick={()=><ComboboxDemo/>} 
                     className="border  hover:bg-[#f7f7f7] bg-white border-[#e9e9e9] items-center rounded-full text-[10px] flex flex-row text-[#242424]    md:text-[20px] md:px-4  px-3 py-3 text-wrap " >
                     <svg
                       width="20"
@@ -163,6 +173,11 @@ const Main = () => {
                     Pro 1 Language 
                     {/* { showListBar && <SearchBar onClose={() => setShowListBar(true)}/>} */}
                   </div>
+                  </HoverCardTrigger>
+                  <HoverCardContent>
+                    <ComboboxDemo/>
+                  </HoverCardContent>
+                  </HoverCard>
           
             <span className="border hover:bg-[#f7f7f7] bg-white border-[#e9e9e9] rounded-full text-black from-neutral-950 md:text-[20px]   text-[14px] px-3 md:px-4 py-3 " ><Pausebtn /></span>
           </div>

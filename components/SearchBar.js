@@ -1,11 +1,15 @@
 import React from 'react'
 import Select from "react-select";
 
-function SearchBar({ onClose }) {
+
+
+
+function SearchBar({onListClose }) {
 const searchRef = React.useRef();
+
     const closeSearchBar = (e) => {
-        if (modalRef.current === e.target) {
-          onClose();
+        if (searchRef.current === e.target) {
+          onListClose();
         }
       };
 
@@ -39,11 +43,16 @@ const searchRef = React.useRef();
         option:(provided)=>({...provided, color:"black"}),
     }  
   return (
+
+
     <div
     ref={searchRef}
-    onClick={closeSearchBar}>
+    // onClick={closeSearchBar}
+    >
       <Select options={options} styles={customStyles}/>
     </div>
+    
+
   )
 }
 

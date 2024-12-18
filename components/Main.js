@@ -19,6 +19,14 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 
 import Model from './Modal'
 
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+
+
+
 // import SearchBar from "./SearchBar";
 
 import {
@@ -42,7 +50,10 @@ const Main = () => {
 
   const [showListBar , setShowListBar] = React.useState(false);
 
+  const [open, setOpen] = React.useState(false)
+  const [value, setValue] = React.useState("")
 
+  const [searchQuery, setSearchQuery] = useState("");
 
 
   const resetVal = () => {
@@ -96,9 +107,9 @@ const Main = () => {
       <div className="grid grid-cols-1 sm:grid-cols-6 items-center  ">
         {/* First Column (Spans 3 columns on larger screens) */}
         <div className="col-span-1 md:col-span-3  text-white  rounded-lg w-full">
-          <div className=" shadow-custom shadow-md  flex flex-row mt-2  md:mt-4 border-[1px] border-[#d4dbe6] h-20 bg-[#C6C6C61A]   md:my-2 my-1 md:mx-4 mx-1 rounded-3xl md:ml-9 p-2 mb-2 md:rounded-3xl text-lg items-center md: overflow-x-auto whitespace-nowrap ">
+          <div className=" shadow-custom shadow-md  flex flex-row mt-2  md:mt-4 border-[1px] border-[#d4dbe6] h-16 bg-[#C6C6C61A]   md:my-2 my-1 md:mx-4 mx-1 rounded-3xl md:ml-9 px-2 py-0 mb-2 md:rounded-3xl text-lg items-center md: overflow-x-auto whitespace-nowrap ">
 
-            <span className=" align-middle justify-between m-1 md:m-2 md:ml-5 bg-[#2fbb66] font-bold  flex flex-row items-center   text-[#fff] rounded-[30px] py-[2px] px-[2px] md:py-1.5 md:px-2 ">
+            <span className=" align-middle justify-between m-1 md:m-2 md:mr-6  bg-[#2fbb66] font-bold  flex flex-row items-center   text-[#fff] rounded-[30px] py-[2px]  md:py-1 md:px-1 ">
               <svg
 
                 width="40"
@@ -112,7 +123,7 @@ const Main = () => {
                   stroke="#FCFCFD"
                 ></path>
               </svg>
-              <p className="pr-2 md:pr-1">{"Pro+"}</p>
+              <p className="pr-2 md:pr-2 ">{"Pro+"}</p>
             </span>
             <span className="  overflow-hidden  w-[100%] scrollbar-hide md:overflow-y-hidden text-sm  tracking-normal md:text-[22px] text-[#1b1d22] "> {' Pro1 Thomas - Smooth and deep (M) / Multilingual'}</span>
             <span > <Button className=" inline-block md:mb-1.5   font-bold color text-[#007bff] hover:text-[#206cc2] text-sm md:text-xl  " variant="link">Change</Button></span>
@@ -143,20 +154,23 @@ const Main = () => {
         <div className="col-span-3 md:col-span-2 border-slate-300  border-2 bg-[#F8F9FA]  rounded-3xl shadow-sm">
           <div className="flex flex-row md:gap-2 items-center">
             <button className="md:w-12 md:h-12 border hover:bg-[#f7f7f7] my-1 ml-1 w-10 h-10 md:ml-2 mr-1 bg-white text-base border-[#e9e9e9] text-white rounded-full flex items-center justify-center">
-              <span  ><GrRotateLeft size={25} fontWeight={900} color="#212529" />  </span>
+              <span  ><GrRotateLeft size={23} fontWeight={900} color="#212529" />  </span>
             </button>
             <button className="md:w-12 hover:bg-[#f7f7f7] md:h-12 w-10 h-10 border my-1 mr-1 bg-white border-[#e9e9e9] font-bold rounded-full flex items-center justify-center">
-              <span> <GrRotateRight size={25} fontWeight={900} color="#212529" /></span>
+              <span> <GrRotateRight size={23} fontWeight={900} color="#212529" /></span>
             </button>
 
-            <div className="border-l  leading-7 border-slate-300 h-16 mt-[10px] mx-1 bg-gray-100"></div>
+            <div className="border-l  leading-7 border-slate-300 md:h-16  h-14 mt-[2px]  md:mt-2 mb-[2px] mx-1 bg-gray-100"></div>
 
-            <HoverCard >
-  <HoverCardTrigger>
+        
+            <Popover open={open} onOpenChange={setOpen} >
+            <PopoverTrigger asChild>
+            <HoverCard  >
+  <HoverCardTrigger onClick={()=>setShowListBar(true)}>
  
                   <div 
-                  onClick={()=><ComboboxDemo/>} 
-                    className="border  hover:bg-[#f7f7f7] bg-white border-[#e9e9e9] items-center rounded-full text-[10px] flex flex-row text-[#242424]    md:text-[20px] md:px-4  px-3 py-3 text-wrap " >
+                  
+                    className="border  hover:bg-[#f7f7f7] bg-white border-[#e9e9e9] items-center rounded-full  text-[14px] mr-1 flex flex-row text-[#242424]    md:text-[20px] md:px-4  px-3 py-2 text-wrap " >
                     <svg
                       width="20"
                       height="18"
@@ -171,18 +185,19 @@ const Main = () => {
                       ></path>
                     </svg>
                     Pro 1 Language 
-                    {/* { showListBar && <SearchBar onClose={() => setShowListBar(true)}/>} */}
                   </div>
                   </HoverCardTrigger>
                   <HoverCardContent>
-                    <ComboboxDemo/>
+                  {showListBar && <ComboboxDemo onListClose={() => setShowListBar(false)} />}
                   </HoverCardContent>
                   </HoverCard>
+                  </PopoverTrigger>
+                  </Popover>
           
-            <span className="border hover:bg-[#f7f7f7] bg-white border-[#e9e9e9] rounded-full text-black from-neutral-950 md:text-[20px]   text-[14px] px-3 md:px-4 py-3 " ><Pausebtn /></span>
+            <span className="border hover:bg-[#f7f7f7] bg-white border-[#e9e9e9] rounded-full text-black from-neutral-950 md:text-[20px]   text-[14px] px-3 md:px-4 py-2 " ><Pausebtn  /></span>
           </div>
 
-          <div className=" w-full  border-slate-300  border-2 bg-gray-100 md:mt-1 mt-1  "></div>
+          <div className=" w-full  border-slate-300  border-2 bg-gray-100 md:mt-1   "></div>
           <div className="flex  md:flex flex-row bg-white md:h-[80vh] text-sm md:text-xl">
 
             <Textarea

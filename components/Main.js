@@ -45,16 +45,75 @@ const Main = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [results, setResults] = React.useState([])
   const [searchResults, setSearchResults] = useState([]);
-
   const [showModel, setShowModel] = React.useState(false)
-
   const [showListBar , setShowListBar] = React.useState(false);
-
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
+  const [textareaValue, setTextareaValue] = useState("");
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [openList, setOpenList] = useState(false);
 
+  const handleLanguageSelectCard = (language) => {
+    console.log("Language selected:", language);
+    setShowListBar(false); // Optionally close the list bar after selecting
+  };
+
+
+  // Update the textarea when a language is selected
+  const handleLanguageSelect = (selectedLanguage) => {
+    setTextareaValue((prev) => (prev ? `${prev}\n${selectedLanguage}` : selectedLanguage));
+  };
+
+  const handlePauseValue = (pauseValue) => {
+    // Append the selected pause value to the textarea content
+    setTextareaValue((prevValue) =>
+      prevValue ? `${prevValue} ${pauseValue}` : pauseValue
+    );
+  };
+
+
+  const [history, setHistory] = useState([]); // History of changes
+  const [currentStep, setCurrentStep] = useState(-1); // Current step in history
+
+  // Handle text change
+  const handleAreaTextChange = (e) => {
+    const newText = e.target.value;
+
+    // Add new change to history and truncate redo steps
+    const updatedHistory = history.slice(0, currentStep + 1);
+    setHistory([...updatedHistory, newText]);
+    setCurrentStep(updatedHistory.length); // Update step to latest
+    setText(newText);
+  };
+
+  // Undo action
+  const handleUndo = () => {
+    if (currentStep > 0) {
+      setCurrentStep((prevStep) => prevStep - 1);
+      setText(history[currentStep - 1]);
+    }
+  };
+
+  // Redo action
+  const handleRedo = () => {
+    if (currentStep < history.length - 1) {
+      setCurrentStep((prevStep) => prevStep + 1);
+      setText(history[currentStep + 1]);
+    }
+  };
+
+
+  const handleTextChange = (e) => {
+    const newText = e.target.value;
+
+    // Add new change to history and truncate redo steps
+    const updatedHistory = history.slice(0, currentStep + 1);
+    setHistory([...updatedHistory, newText]);
+    setCurrentStep(updatedHistory.length); // Update step to latest
+    setText(newText);
+  };
+
+  
 
   const resetVal = () => {
     setSliderValue(0);
@@ -97,7 +156,7 @@ const Main = () => {
     return null;
   }
 
-  const handleTextChange = (e) => {
+  const handleMyTextChange = (e) => {
     setSelectedVoice(e.target.value);
   };
 
@@ -154,10 +213,16 @@ const Main = () => {
         <div className="col-span-3 md:col-span-2 border-slate-300  border-2 bg-[#F8F9FA]  rounded-3xl shadow-sm">
           <div className="flex flex-row md:gap-2 items-center">
             <button className="md:w-12 md:h-12 border hover:bg-[#f7f7f7] my-1 ml-1 w-10 h-10 md:ml-2 mr-1 bg-white text-base border-[#e9e9e9] text-white rounded-full flex items-center justify-center">
-              <span  ><GrRotateLeft size={23} fontWeight={900} color="#212529" />  </span>
+              <span
+                 onClick={handleUndo}
+                 disabled={currentStep <= 0}
+                ><GrRotateLeft   size={23} fontWeight={900} color="#212529" />  </span>
             </button>
             <button className="md:w-12 hover:bg-[#f7f7f7] md:h-12 w-10 h-10 border my-1 mr-1 bg-white border-[#e9e9e9] font-bold rounded-full flex items-center justify-center">
-              <span> <GrRotateRight size={23} fontWeight={900} color="#212529" /></span>
+              <span
+              onClick={handleRedo}
+              disabled={currentStep >= history.length - 1}
+              > <GrRotateRight size={23} fontWeight={900} color="#212529" /></span>
             </button>
 
             <div className="border-l  leading-7 border-slate-300 md:h-16  h-14 mt-[2px]  md:mt-2 mb-[2px] mx-1 bg-gray-100"></div>
@@ -166,7 +231,7 @@ const Main = () => {
             <Popover open={open} onOpenChange={setOpen} >
             <PopoverTrigger asChild>
             <HoverCard  >
-  <HoverCardTrigger onClick={()=>setShowListBar(true)}>
+  <HoverCardTrigger    onClick={() => setShowListBar(true)}>
  
                   <div 
                   
@@ -188,28 +253,27 @@ const Main = () => {
                   </div>
                   </HoverCardTrigger>
                   <HoverCardContent>
-                  {showListBar && <ComboboxDemo onListClose={() => setShowListBar(false)} />}
+                  {showListBar && <ComboboxDemo  onLanguageSelect={handleLanguageSelect} />}
                   </HoverCardContent>
                   </HoverCard>
                   </PopoverTrigger>
                   </Popover>
           
-            <span className="border hover:bg-[#f7f7f7] bg-white border-[#e9e9e9] rounded-full text-black from-neutral-950 md:text-[20px]   text-[14px] px-3 md:px-4 py-2 " ><Pausebtn  /></span>
+            <span className="border hover:bg-[#f7f7f7] bg-white border-[#e9e9e9] rounded-full text-black from-neutral-950 md:text-[20px]   text-[14px] px-3 md:px-4 py-2 " ><Pausebtn  onSelectPause={handlePauseValue}   /></span>
           </div>
 
           <div className=" w-full  border-slate-300  border-2 bg-gray-100 md:mt-1   "></div>
           <div className="flex  md:flex flex-row bg-white md:h-[80vh] text-sm md:text-xl">
 
             <Textarea
-
-              value={selectedVoice}
-              onChange={handleTextChange}
+  value={textareaValue}
+  onChange={(e) => setTextareaValue(e.target.value)}
             />
 
           </div>
           <div className="flex flex-row text-xs md:text-sm  md:xl justify-between items-center w-full gap-4">
             <div className="flex flex-row items-center gap-1 p-2">
-              <span>{0}</span>/
+              <span>{text.length}</span>/
               <span>{ }chars used</span>
             </div>
 

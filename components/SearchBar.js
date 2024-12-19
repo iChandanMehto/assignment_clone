@@ -46,9 +46,7 @@ const searchRef = React.useRef();
 
 
     <div
-    ref={searchRef}
-    // onClick={closeSearchBar}
-    >
+    ref={searchRef}>
       <Select options={options} styles={customStyles}/>
     </div>
     

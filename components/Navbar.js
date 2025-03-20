@@ -16,8 +16,8 @@ import {
 
 const Navbar = () => {
   return (
-    <nav className=" p-4 text-2xl text-[#1b1d22] font-normal ">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className=" p-4 text-xl text-[#1b1d22] font-normal ">
+      <div className="container mx-auto flex justify-around items-center">
         <div >
             <Link href={"/"}> 
             <Image
@@ -28,7 +28,7 @@ const Navbar = () => {
           /></Link>
  
         </div>
-        <ul className='gap-3 hidden md:flex space-x-4 items-center  tracking-normal text-[22px] text-[#1b1d22] font-normal '>
+        <ul className='gap-3 hidden md:flex space-x-4 items-center  tracking-normal text-lg text-[#1b1d22] font-normal '>
           {/* Example Navigation Links */}
          <li><Link href="/" className="text-slate-950 px-4">
             Home
@@ -49,9 +49,9 @@ const Navbar = () => {
           </Link>
           </li>
          <li>
-         <Button  className="border-[#5095f8] mx-1 px-4 text-xl rounded-3xl text-black  py-1.5 pr-12 pl-12 pt-6 pb-6 border-2 border-solid hover:bg-slate-200" variant="outline">Log In</Button>  </li>
+         <Button  className="border-[#5095f8] mx-1  text-lg rounded-full text-black   pr-12 px-6 py-5 border-2 border-solid hover:bg-slate-200" variant="outline">Log In</Button>  </li>
          <li>
-         <Button  className="border-[#5095f8] bg-[#5679f3] mx-1 px-4 text-xl rounded-3xl text-white  py-1.5 pr-12 pl-12 pt-6 pb-6 border-2 hover:bg-[#5c78dc]  " variant="outline">Register</Button>  </li>
+         <Button  className="border-[#5095f8] bg-[#5679f3] mx-1 text-lg rounded-full text-white   px-6  py-5 border-2 hover:bg-[#5c78dc]  " variant="outline">Register</Button>  </li>
      
         </ul>
         <div className='md:hidden'>
